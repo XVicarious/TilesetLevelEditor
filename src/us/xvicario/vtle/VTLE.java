@@ -3,7 +3,6 @@ package us.xvicario.vtle;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -26,11 +25,18 @@ public class VTLE {
                 fileChoose = new JFileChooser();
                 int returnValue = fileChoose.showOpenDialog(mainFrame);
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    //File file = fileChoose.getSelectedFile();
                     Path path = Paths.get(fileChoose.getSelectedFile().toURI());
-                    System.out.println(LevelParser.parseLevel(path, 4)[0].toString());
+                    JTextField xField = new JTextField(5);
+                    JTextField yField = new JTextField(5);
+                    JPanel dialog = new JPanel();
+                    dialog.add(new JLabel("x:"));
+                    dialog.add(xField);
+                    dialog.add(Box.createHorizontalStrut(15));
+                    dialog.add(new JLabel("y:"));
+                    dialog.add(yField);
+                    int result = JOptionPane.showConfirmDialog(null, dialog, "Enter the width and height of the map", JOptionPane.OK_CANCEL_OPTION);
                 }
-        }
+            }
         });
         fileMenu.add(openMenu);
         menuBar.add(fileMenu);

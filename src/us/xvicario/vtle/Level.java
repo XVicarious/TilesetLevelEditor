@@ -1,5 +1,7 @@
 package us.xvicario.vtle;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -9,18 +11,21 @@ import java.util.BitSet;
  */
 public class Level {
 
-    public ArrayList<BitSet> levelData;
+    public BitSet[] levelData;
 
-    public Level() {
-        levelData = new ArrayList<BitSet>();
-    }
-
-    public Level(ArrayList<BitSet> level) {
+    public Level(BitSet[] level) {
         levelData = level;
     }
 
-    public Level(byte[] level) {
-        levelData = new ArrayList<BitSet>();
+    public BitSet getTileAt(int x, int y, int mapHeight, int mapWidth) throws InvalidArgumentException {
+        // Handles problems.
+        if (x > mapWidth) {
+            throw new InvalidArgumentException(new String[]{"Map not wide enough to have that x-value!"});
+        } else if (y > mapHeight) {
+            throw new InvalidArgumentException(new String[]{"Map not tall enough to have that y-value!"});
+        }
+        int tileIndex = (y * mapWidth) + x;
+        return levelData[tileIndex];
     }
 
 }
