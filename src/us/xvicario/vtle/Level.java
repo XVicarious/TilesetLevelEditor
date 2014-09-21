@@ -17,6 +17,15 @@ public class Level {
         levelData = level;
     }
 
+    /**
+     * Gets the tile at the given position
+     * @param x the x coordinate of the tile
+     * @param y the y coordinate of the tile
+     * @param mapHeight how high the map is
+     * @param mapWidth how wide the map is
+     * @return the tile at x,y
+     * @throws InvalidArgumentException if x or y are over width or height respectively.
+     */
     public BitSet getTileAt(int x, int y, int mapHeight, int mapWidth) throws InvalidArgumentException {
         // Handles problems.
         if (x > mapWidth) {
