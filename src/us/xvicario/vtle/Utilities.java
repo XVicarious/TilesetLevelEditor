@@ -6,10 +6,10 @@ package us.xvicario.vtle;
 public class Utilities {
 
     public static boolean isEven(int i) {
-        if ((i % 2) == 0) {
-            return true;
+        if (i % 2) {
+            return false;
         }
-        return false;
+        return true;
     }
 
 }
